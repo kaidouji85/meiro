@@ -1,0 +1,16 @@
+{
+  "name": "meiro",
+  "version": "0.0.0",
+  "description": "meiro program",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Y.Takeuchi",
+  "license": "BSD",
+  "dependencies": {
+    "chai": "*",
+    "mocha": "*"
+  }
+}
