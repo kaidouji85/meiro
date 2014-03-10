@@ -3,6 +3,8 @@ var meiro = require('./meiro.js');
 var meiroData = new Array();
 var fileName = process.argv[2];
 
+console.log(fileName);
+
 console.log('入力：');
 meiroData = convertFileToMeiroData(fileName);
 var Meiro = meiro(meiroData);
@@ -20,7 +22,7 @@ console.log(result===true ? '到達可能です' : '到達できません');
  */
 function convertFileToMeiroData(fileName) {
     var data = new Array();
-    fs.readFileSync('testdataA.txt').toString().split('\n').forEach(function(line) {
+    fs.readFileSync(fileName).toString().split('\n').forEach(function(line) {
         for (var i = 0; i < 11; i++) {
             data.push(line.trim().charAt(i));
         }
