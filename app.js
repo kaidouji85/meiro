@@ -8,12 +8,17 @@ console.log(fileName);
 console.log('入力：');
 meiroData = convertFileToMeiroData(fileName);
 var Meiro = meiro(meiroData);
-Meiro.drawPos();
+Meiro.drawMeiro();
 console.log();
 
 console.log('判定：');
 var result = Meiro.isGoal();
 console.log(result===true ? '到達可能です' : '到達できません');
+console.log();
+
+console.log('経路：');
+result===true ? Meiro.drawMeiroRoute() : console.log('なし');
+console.log();
 
 /**
  * ファイル内容を迷路データ配列に変換する 

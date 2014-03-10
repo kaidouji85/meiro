@@ -4,10 +4,14 @@ function meiro(spec,my){
     var HEIGHT = 11;
     var meiroData = spec;
     var houmonZumi = new Array(WIDTH*HEIGHT);
+    var keiro = new Array(WIDTH*HEIGHT);
     
-    for(var i=0; i<houmonZumi.length; i++){
+    for(var i=0; i<WIDTH*HEIGHT; i++){
         houmonZumi[i] = 0;
+        keiro[i] = 0;
     }
+    
+    
     
     that.isGoal = function(){
         var startPos = that.getStartPos();
@@ -22,8 +26,10 @@ function meiro(spec,my){
         
         var searchDir = [1,-1,HEIGHT,-HEIGHT];
         for(var i in searchDir){
-            if(canSearch(pos+searchDir[i])){
-                if(searchPath(pos+searchDir[i])){
+            var nextPos = pos+searchDir[i];
+            if(canSearch(nextPos)){
+                if(searchPath(nextPos)){
+                    keiro[nextPos] = meiroData[nextPos]==='G' ? 0 : 1;
                     return true;
                 }
             }
@@ -49,16 +55,30 @@ function meiro(spec,my){
         return -1;
     };
     
-    that.drawPos = function(pos) {
+    that.drawMeiro = function() {
         for(var i=0; i<HEIGHT; i++){
             var line = '';
             for(var j=0; j<WIDTH; j++){
                 var nowPos =j+i*HEIGHT;
-                line += nowPos===pos ? 'P' : meiroData[j+i*HEIGHT];
+                line += meiroData[j+i*HEIGHT];
             }
             console.log(line);
         }  
     };
+    
+    
+    that.drawMeiroRoute = function() {
+        for(var i=0; i<HEIGHT; i++){
+            var line = '';
+            for(var j=0; j<WIDTH; j++){
+                var nowPos =j+i*HEIGHT;
+                line += keiro[nowPos]===1 ? '+' : meiroData[j+i*HEIGHT];
+            }
+            console.log(line);
+        }          
+    };
+    
+
     
     return that;
 }
